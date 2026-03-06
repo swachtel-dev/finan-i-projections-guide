@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Projections Guide - FINAN I Unit 8</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #162033;
+            --slate: #334155;
+            --body: #3f4b5c;
+            --muted: #556270;
+            --border: #e2e8f0;
+            --bg: #fafbfd;
+
+            --blue-bg: #eef4ff;
+            --blue-border: #3b7ddd;
+            --blue-text: #1e3a5f;
+
+            --amber-bg: #fef9ee;
+            --amber-border: #d4940a;
+            --amber-text: #654409;
+
+            --green-bg: #effdf4;
+            --green-border: #22915a;
+            --green-text: #14532d;
+
+            --orange-bg: #fff6ed;
+            --orange-border: #d97706;
+            --orange-text: #7c2d12;
+
+            --code-bg: #f1f5f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { font-size: 17px; }
+
+        body {
+            font-family: 'Libre Franklin', 'Segoe UI', system-ui, sans-serif;
+            color: var(--body);
+            background: var(--bg);
+            line-height: 1.72;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        /* ---------- SKIP LINK & A11Y ---------- */
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--navy); color: #fff; padding: 8px 16px; z-index: 100; text-decoration: underline; }
+        .skip-link:focus { top: 0; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        :focus-visible { outline: 2px solid var(--blue-border); outline-offset: 2px; }
+        a { text-decoration: underline; }
+
+        /* ---------- HEADER ---------- */
+        header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--navy);
+        }
+
+        header h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        header .subtitle {
+            font-size: 0.95rem;
+            color: var(--muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ---------- HEADINGS ---------- */
+        h2 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.55rem;
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.3;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        /* ---------- BODY TEXT ---------- */
+        p {
+            margin-bottom: 1.15rem;
+        }
+
+        strong, b {
+            font-weight: 600;
+            color: var(--slate);
+        }
+
+        /* ---------- CALLOUT BOXES ---------- */
+        .callout {
+            padding: 1.15rem 1.35rem;
+            margin: 1.4rem 0;
+            border-radius: 6px;
+            border-left: 4px solid;
+            font-size: 0.96rem;
+        }
+
+        .callout p:last-child { margin-bottom: 0; }
+
+        .callout-label {
+            font-weight: 700;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* concept (blue) */
+        .concept {
+            background: var(--blue-bg);
+            border-color: var(--blue-border);
+            color: var(--blue-text);
+        }
+        .concept .callout-label { color: var(--blue-border); }
+
+        /* example (amber) */
+        .example {
+            background: var(--amber-bg);
+            border-color: var(--amber-border);
+            color: var(--amber-text);
+        }
+        .example .callout-label { color: var(--amber-border); }
+
+        /* excel (green) */
+        .excel {
+            background: var(--green-bg);
+            border-color: var(--green-border);
+            color: var(--green-text);
+        }
+        .excel .callout-label { color: var(--green-border); }
+
+        /* warning (orange) */
+        .warning {
+            background: var(--orange-bg);
+            border-color: var(--orange-border);
+            color: var(--orange-text);
+        }
+        .warning .callout-label { color: var(--orange-border); }
+
+        /* ---------- CODE / FORMULA ---------- */
+        code {
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+            font-size: 0.88rem;
+            background: var(--code-bg);
+            padding: 0.15em 0.45em;
+            border-radius: 4px;
+            color: var(--slate);
+            font-weight: 500;
+        }
+
+        .formula-block {
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+            font-size: 0.88rem;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            line-height: 1.9;
+            color: var(--slate);
+            overflow-x: auto;
+        }
+
+        .formula-block .highlight {
+            background: #dbeafe;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+        }
+
+        /* ---------- STEPS (inside callouts) ---------- */
+        .steps {
+            margin: 0.5rem 0 0 0;
+            padding-left: 1.3rem;
+        }
+
+        .steps li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* ---------- TABLE ---------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.4rem 0;
+            font-size: 0.93rem;
+        }
+
+        thead th {
+            background: var(--navy);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.83rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f4f6fa;
+        }
+
+        tbody td:first-child {
+            font-weight: 600;
+            color: var(--slate);
+            white-space: nowrap;
+        }
+
+        /* ---------- ORDERED LIST ---------- */
+        ol.process {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0;
+        }
+
+        ol.process li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 0.9rem;
+            line-height: 1.6;
+        }
+
+        ol.process li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0.05em;
+            width: 2rem;
+            height: 2rem;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ---------- PRINT ---------- */
+        @media print {
+            html { font-size: 11pt; }
+            body { background: #fff; }
+            .page { padding: 0; max-width: 100%; }
+            .callout { break-inside: avoid; }
+            h2 { break-after: avoid; }
+            header { border-bottom-width: 2px; }
+        }
+    </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="page">
+
+<header>
+    <div class="subtitle">FINAN-I &middot; Unit 8 Resource</div>
+    <h1>Financial Projections Guide</h1>
+</header>
+
+<main id="main-content">
+
+<p>In Unit 7, you analyzed the past. In this unit, you project the future. Financial projections are how businesses answer "what if?" questions with numbers instead of guesses. Every company that plans to expand, hire, borrow money, or launch a new product builds projections first.</p>
+
+
+<!-- ============================== CAGR ============================== -->
+<section aria-label="CAGR: Measuring Growth">
+<h2>CAGR: Measuring Growth</h2>
+
+<p>Before you can project forward, you need to measure how fast a business is growing. The standard tool for this is <strong>CAGR</strong> (Compound Annual Growth Rate), though for monthly data we calculate a compound <em>monthly</em> growth rate using the same formula.</p>
+
+<div class="callout concept">
+    <span class="callout-label">Key Formula</span>
+    <code>Growth Rate = (End Value / Start Value) ^ (1 / Number of Periods) &minus; 1</code>
+</div>
+
+<p>The key question is: <strong>how many periods?</strong> Count the gaps between your start and end points, not the number of data points. If you have data from January through December, that is 12 months of data but only <strong>11 periods</strong> of growth (Jan&rarr;Feb, Feb&rarr;Mar, &hellip;, Nov&rarr;Dec).</p>
+
+<div class="callout example">
+    <span class="callout-label">Worked Example</span>
+    <p>A cafe earned $23,500 in January and $31,100 in December.</p>
+    <div class="formula-block">Growth Rate = ($31,100 / $23,500) ^ (1/11) &minus; 1</div>
+    <p>Step by step:</p>
+    <ol class="steps">
+        <li>Divide: $31,100 / $23,500 = 1.3234</li>
+        <li>Raise to the power of 1/11: 1.3234 ^ 0.0909 = 1.0258</li>
+        <li>Subtract 1: 1.0258 &minus; 1 = 0.0258 = <strong>2.58% per month</strong></li>
+    </ol>
+</div>
+
+<div class="callout excel">
+    <span class="callout-label">In Excel</span>
+    <p>If January revenue is in cell B5 and December revenue is in cell B16:</p>
+    <div class="formula-block"><span class="highlight">=(B16/B5)^(1/11)-1</span></div>
+    <p>Format the result as a percentage. You should get approximately 2.6%.</p>
+</div>
+
+<p>A 2.6% monthly growth rate might sound small, but compounding is powerful. Over a full year, it turns $23,500 into $31,100, a 32% increase. This is exactly why CAGR is more useful than simply averaging each month's change: it accounts for the fact that growth builds on itself.</p>
+</section>
+
+
+<!-- =================== FLAT VS GROWTH =================== -->
+<section aria-label="Flat vs. Growth Projections">
+<h2>Flat vs. Growth Projections</h2>
+
+<p>Once you know the growth rate, there are two common ways to project future revenue:</p>
+
+<div class="callout concept">
+    <span class="callout-label">Flat Projection</span>
+    <p>Assume every future month equals your current average monthly revenue. If the cafe averaged $27,500/month this year, project $27,500 for every month next year. This is conservative. It ignores any growth trend.</p>
+</div>
+
+<div class="callout concept">
+    <span class="callout-label">Growth Projection</span>
+    <p>Start from your most recent month's revenue and grow it forward using the CAGR you calculated. Each month equals the previous month multiplied by (1 + growth rate).</p>
+    <div class="formula-block">Jan Year 2 = December Year 1 &times; (1 + Growth Rate)
+Feb Year 2 = Jan Year 2 &times; (1 + Growth Rate)
+Mar Year 2 = Feb Year 2 &times; (1 + Growth Rate)
+...and so on</div>
+</div>
+
+<div class="callout excel">
+    <span class="callout-label">In Excel</span>
+    <p>If your growth rate is in one cell (say you calculated it as 2.58%) and January Year 2 revenue is in cell E8:</p>
+    <div class="formula-block"><span class="highlight">February = E8 * (1 + growth rate)</span>
+<span class="highlight">March &nbsp;&nbsp;&nbsp;= E9 * (1 + growth rate)</span></div>
+    <p>Each cell references the one above it. This "chain" approach makes the formula easy to copy down.</p>
+</div>
+
+<p>Neither method is perfect. Flat projections underestimate growing businesses. Growth projections can overestimate if the business is approaching market saturation. Most analysts use growth projections but apply judgment about whether the rate is sustainable. A cafe that grew 2.6% monthly in its first year may slow in its second year as the initial novelty fades.</p>
+</section>
+
+
+<!-- =================== RAMP-UP =================== -->
+<section aria-label="Revenue Ramp-Up">
+<h2>Revenue Ramp-Up</h2>
+
+<p>When a business opens a new location, that location does not immediately earn the same revenue as the original. It takes time to build awareness, attract regulars, and reach capacity. This period is called the <strong>ramp-up</strong>.</p>
+
+<div class="callout example">
+    <span class="callout-label">Example</span>
+    <p>If the original cafe earns $31,100/month, a second location might earn only $9,300 in its first month (about 30% of the original). Over the next year, as more customers discover it, revenue grows toward some target fraction of the original. Whether it reaches 60%, 75%, or 100% depends on factors like location quality, competition, and marketing.</p>
+</div>
+
+<p>A common simplification is <strong>linear ramp-up</strong>: revenue increases by the same dollar amount each month from a starting percentage to a target percentage. The formula is:</p>
+
+<div class="callout concept">
+    <span class="callout-label">Ramp-Up Formula</span>
+    <div class="formula-block">Revenue = Original Dec Revenue &times; (Start% + (Target% &minus; Start%) &times; Month / 12)</div>
+    <p>For example, ramping from 30% to 75% over 12 months:</p>
+    <div class="formula-block">Month 1: &nbsp;$31,100 &times; (0.30 + (0.75 &minus; 0.30) &times; 1/12) &nbsp;= $31,100 &times; 0.3375 &asymp; <strong>$10,500</strong>
+Month 6: &nbsp;$31,100 &times; (0.30 + (0.75 &minus; 0.30) &times; 6/12) &nbsp;= $31,100 &times; 0.5250 &asymp; <strong>$16,300</strong>
+Month 12: $31,100 &times; 0.75 &asymp; <strong>$23,300</strong></div>
+</div>
+
+<p>The ramp-up period is financially dangerous. During these early months, the new location has most of its costs (rent, wages, loan payments) but only a fraction of its eventual revenue. The business must have enough cash to survive this period of losses.</p>
+</section>
+
+
+<!-- =================== FIXED VS VARIABLE =================== -->
+<section aria-label="Fixed vs. Variable Costs">
+<h2>Fixed vs. Variable Costs</h2>
+
+<p><strong>Fixed costs</strong> stay the same regardless of how much revenue the business generates. Rent, loan payments, and base wages are fixed. The new location pays $4,000/month in rent whether it serves 100 customers or 1,000.</p>
+
+<p><strong>Variable costs</strong> change with revenue. Ingredients are a variable cost. If the cafe's ingredient cost ratio is 30%, then for every $1,000 in additional revenue, ingredient costs increase by $300. You can calculate this ratio from the original location's historical data: total ingredient costs divided by total revenue.</p>
+
+<p>This distinction matters because during the ramp-up period, the new location has nearly all of its fixed costs but low revenue. As revenue grows, variable costs grow too, but the fixed costs stay flat, so a larger share of each new dollar goes to profit.</p>
+</section>
+
+
+<!-- =================== SCENARIO PLANNING =================== -->
+<section aria-label="Scenario Planning">
+<h2>Scenario Planning</h2>
+
+<p>No one knows exactly what will happen. Scenario planning addresses this by modeling multiple possible futures and comparing the outcomes:</p>
+
+<table>
+    <caption>Scenario planning: assumptions and purpose for each case</caption>
+    <thead>
+        <tr>
+            <th scope="col">Scenario</th>
+            <th scope="col">What It Assumes</th>
+            <th scope="col">Purpose</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Bear (Pessimistic)</td>
+            <td>Revenue ramps up slowly. The new location reaches a lower fraction of the original's revenue.</td>
+            <td>Defines the <em>worst plausible case</em>. If you can survive the bear case, the expansion is low risk.</td>
+        </tr>
+        <tr>
+            <td>Neutral (Base Case)</td>
+            <td>Things go roughly as expected. The most likely single outcome.</td>
+            <td>The plan you build around.</td>
+        </tr>
+        <tr>
+            <td>Bull (Optimistic)</td>
+            <td>Customer acquisition goes smoothly. Revenue ramps up faster, reaching a higher fraction of the original.</td>
+            <td>Defines the <em>upside</em>.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>In the workbook, the only number that changes between scenarios is the <strong>target revenue percentage</strong> at Month 12. Everything else (rent, wages, loan payments, ingredient ratio) stays the same. This isolates the key question: how fast does the new location build its customer base?</p>
+
+<p><strong>How do you decide what percentages to use?</strong> In practice, scenario assumptions are informed by qualitative research: reading industry news, analyst reports, and company filings. Is there a new competitor opening nearby? Has the neighborhood been growing? Are ingredient costs rising? A bear case for a cafe expanding into an area with three new competitors looks different from a bear case for a cafe expanding into an underserved neighborhood. The numbers in a model should reflect what you actually know about the business and its environment.</p>
+
+<div class="callout warning">
+    <span class="callout-label">Common Mistake</span>
+    <p>Making the bull case unrealistically optimistic or the bear case unrealistically pessimistic. Good scenarios are all <em>plausible</em>. The bear case is not "everything goes wrong at once." It is "growth is slower than expected." The bull case is not "the cafe becomes the most popular restaurant in the city." It is "customer acquisition goes smoothly."</p>
+</div>
+</section>
+
+
+<!-- =================== BREAK-EVEN =================== -->
+<section aria-label="Break-Even Analysis">
+<h2>Break-Even Analysis</h2>
+
+<p>Break-even is the point where revenue equals costs:</p>
+
+<div class="callout concept">
+    <span class="callout-label">Monthly Break-Even</span>
+    <p>The first month where the new location's revenue exceeds its costs. After this point, the location makes money each month going forward. Look for the month where Monthly P/L first goes positive.</p>
+</div>
+
+<div class="callout concept">
+    <span class="callout-label">Cumulative Break-Even</span>
+    <p>The month where <em>total</em> revenue since opening first exceeds <em>total</em> costs since opening. This takes longer because the business must first earn back the losses accumulated during the ramp-up.</p>
+</div>
+
+<p>For many new locations, monthly break-even happens within the first year but cumulative break-even takes 18 to 24 months. This is normal. The critical question is: does the business have enough cash reserves to survive until that point? The most negative value in the Cumulative P/L column tells you the maximum cash the business needs to set aside.</p>
+</section>
+
+
+<!-- =================== DEBT =================== -->
+<section aria-label="Debt Servicing">
+<h2>Debt Servicing</h2>
+
+<p>Many expansions are funded by loans. The key number is the <strong>monthly payment</strong>: a fixed amount that covers both principal repayment and interest. For an $80,000 loan at 8% over 5 years, the monthly payment is approximately $1,622. This payment is the same every month for the life of the loan, regardless of how the business is doing. This is why over-leveraging (borrowing too much) is dangerous: the debt payments can sink a business during a downturn.</p>
+</section>
+
+
+<!-- =================== SUMMARY =================== -->
+<section aria-label="Putting It All Together">
+<h2>Putting It All Together</h2>
+
+<p>The workbook walks you through the complete process:</p>
+
+<ol class="process" role="list">
+    <li><strong>Measure historical performance</strong> (Tab 1: averages, CAGR, trend interpretation)</li>
+    <li><strong>Project the existing business forward</strong> (Tab 2: flat vs. growth projections)</li>
+    <li><strong>Model the new location</strong> (Tab 3: costs, revenue ramp-up, break-even)</li>
+    <li><strong>Run multiple scenarios and decide</strong> (Tab 4: bear/neutral/bull, charts, recommendation)</li>
+</ol>
+
+<p>This is the same process, at a simplified level, that professional financial analysts use when evaluating whether a company should expand, acquire another business, or launch a new product.</p>
+</section>
+
+</main>
+</div>
+</body>
+</html>
